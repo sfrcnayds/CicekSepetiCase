@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - RedisConnection=redis
+      - PostgresConnection=Host=db;Username=postgres;Password=1;Database=ciceksepeti
+    depends_on:
+      - redis
+      - db
+    networks:
+      - back-end
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - back-end
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ciceksepeti
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - back-end
+networks:
+  back-end:
