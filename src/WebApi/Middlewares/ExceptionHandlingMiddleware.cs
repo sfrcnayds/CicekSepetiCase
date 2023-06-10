@@ -45,6 +45,7 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
     private static int GetStatusCode(Exception exception) =>
         exception switch
         {
+            InsufficientStockAvailableException => StatusCodes.Status400BadRequest,
             NotFoundException => StatusCodes.Status404NotFound,
             ValidationException => StatusCodes.Status422UnprocessableEntity,
             _ => StatusCodes.Status500InternalServerError

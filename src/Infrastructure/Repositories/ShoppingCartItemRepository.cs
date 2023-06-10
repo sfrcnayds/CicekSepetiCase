@@ -13,19 +13,14 @@ public class ShoppingCartItemRepository : IShoppingCartItemRepository
     {
         _context = context;
     }
-
-    public async Task<ShoppingCartItem?> GetByIdAsync(Guid shoppingCartItemId)
+    public async Task AddAsync(ShoppingCartItem shoppingCartItem,CancellationToken cancellationToken = default)
     {
-        return await _context.ShoppingCartItems.FirstOrDefaultAsync(item => item.Id == shoppingCartItemId);
+        await _context.ShoppingCartItems.AddAsync(shoppingCartItem,cancellationToken);
     }
 
-    public async Task AddAsync(ShoppingCartItem shoppingCartItem)
+    public void Update(ShoppingCartItem shoppingCartItem)
     {
-        await _context.ShoppingCartItems.AddAsync(shoppingCartItem);
-    }
-
-    public async Task AddRangeAsync(IEnumerable<ShoppingCartItem> shoppingCartItems)
-    {
-        await _context.AddRangeAsync(shoppingCartItems);
+        _context.Attach(shoppingCartItem);
+        _context.Entry(shoppingCartItem).State = EntityState.Modified;
     }
 }

@@ -4,5 +4,5 @@ namespace Domain.Abstractions.Repositories;
 
 public interface IProductRepository
 {
-    Task<Product?> GetByIdAsync(Guid productId);
+    Task<Product?> GetByIdAsync(Guid productId, CancellationToken cancellationToken = default);
 }

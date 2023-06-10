@@ -1,0 +1,16 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=11ce334b_002Df30a_002D4f9e_002D8fa7_002Dba71f2348ccc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Handle_ShouldThrowNotFoundException_WhenUserDoesNotExist #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D1905721-8484-48F1-8510-4C2BBD0E7791::net6.0::Application.UnitTests.ShoppingCart.Commands.ShoppingCartAddCommandHandlerTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=159f1938_002D197c_002D4d28_002Dacae_002D4bf972a1496c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Handle_ShouldThrowNotFoundException_WhenUserDoesNotExist #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D1905721-8484-48F1-8510-4C2BBD0E7791::net6.0::Application.UnitTests.ShoppingCart.Commands.ShoppingCartAddCommandHandlerTests.Handle_ShouldThrowNotFoundException_WhenUserDoesNotExist&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=187bb4b9_002Df24f_002D4f3e_002D8262_002D3a6b31d6361a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Handle_ShouldThrowNotFoundException_WhenUserDoesNotExist" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D1905721-8484-48F1-8510-4C2BBD0E7791::net6.0::Application.UnitTests.ShoppingCart.Commands.ShoppingCartAddCommandHandlerTests.Handle_ShouldThrowNotFoundException_WhenUserDoesNotExist&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -31,14 +31,19 @@ public static class DependencyInjection
         );
         // Add Redis
         services.AddStackExchangeRedisCache(redisOptions => { redisOptions.Configuration = redisConnection; });
-        
+
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
         services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
-        
-        services.AddTransient<IProductRepository, ProductRepository>();
-        services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
-        services.AddTransient<IShoppingCartItemRepository, ShoppingCartItemRepository>();
-        
+
+        services.AddScoped<ProductRepository>();
+        services.AddScoped<IProductRepository, CachedProductRepository>();
+
+        services.AddScoped<ShoppingCartRepository>();
+        services.AddScoped<IShoppingCartRepository, CachedShoppingCartRepository>();
+
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IShoppingCartItemRepository, ShoppingCartItemRepository>();
+
         services.AddSingleton<ICacheService, CacheService>();
 
         return services;

@@ -4,8 +4,6 @@ namespace Domain.Abstractions.Repositories;
 
 public interface IShoppingCartItemRepository
 {
-    Task<ShoppingCartItem?> GetByIdAsync(Guid shoppingCartItemId);
-    Task AddAsync(ShoppingCartItem shoppingCartItem);
-    
-    Task AddRangeAsync(IEnumerable<ShoppingCartItem> shoppingCartItems);
+    Task AddAsync(ShoppingCartItem shoppingCartItem,CancellationToken cancellationToken = default);
+    void Update(ShoppingCartItem shoppingCartItem);
 }

@@ -1,5 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{248A6CB9-CC31-4B72-BC72-D83498A173BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{7932366F-D3D1-43B6-810B-B4BB2A73DA6C}"
@@ -9,11 +10,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{D67C8991-80AD-47AF-A930-47C136C6931B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{870B0213-A9D8-44B4-A355-975090EB330D}"
-	ProjectSection(SolutionItems) = preProject
-		src\docker-compose.yaml = src\docker-compose.yaml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F56EC87A-7756-404D-AE74-56BD40C93704}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9963977-4918-4FF6-ABA9-9264F08C6EC5}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "tests\Application.UnitTests\Application.UnitTests.csproj", "{D1905721-8484-48F1-8510-4C2BBD0E7791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,11 +42,16 @@ Global
 		{D67C8991-80AD-47AF-A930-47C136C6931B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D67C8991-80AD-47AF-A930-47C136C6931B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D67C8991-80AD-47AF-A930-47C136C6931B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1905721-8484-48F1-8510-4C2BBD0E7791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1905721-8484-48F1-8510-4C2BBD0E7791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1905721-8484-48F1-8510-4C2BBD0E7791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1905721-8484-48F1-8510-4C2BBD0E7791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7932366F-D3D1-43B6-810B-B4BB2A73DA6C} = {870B0213-A9D8-44B4-A355-975090EB330D}
 		{248A6CB9-CC31-4B72-BC72-D83498A173BF} = {870B0213-A9D8-44B4-A355-975090EB330D}
 		{112523B1-900F-436B-A100-B99A1E7ABFD1} = {870B0213-A9D8-44B4-A355-975090EB330D}
 		{D67C8991-80AD-47AF-A930-47C136C6931B} = {870B0213-A9D8-44B4-A355-975090EB330D}
+		{D1905721-8484-48F1-8510-4C2BBD0E7791} = {F56EC87A-7756-404D-AE74-56BD40C93704}
 	EndGlobalSection
 EndGlobal

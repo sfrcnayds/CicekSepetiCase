@@ -1,5 +1,7 @@
 using Application.Commons.DTOs;
 using Application.Features.ShoppingCart.Commands.ShoppingCartAdd;
+using Application.Features.ShoppingCart.Queries.ShoppingCartGetByUserId;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +17,18 @@ public class ShoppingCartController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost, Route("AddItem")]
+    [HttpGet, Route("[action]")]
+    public async Task<ActionResult<ShoppingCart>> GetUserShoppingCart(Guid userId,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new ShoppingCartGetByUserIdQuery(userId), cancellationToken));
+    }
+
+    [HttpPost, Route("[action]")]
     public async Task<ActionResult> AddItem(ShoppingCartAddRequest shoppingCartAddRequest,
         CancellationToken cancellationToken)
     {
         await _mediator.Send(new ShoppingCartAddCommand(shoppingCartAddRequest), cancellationToken);
-        return Ok("");
+        return NoContent();
     }
 }

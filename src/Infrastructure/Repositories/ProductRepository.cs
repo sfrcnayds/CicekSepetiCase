@@ -14,8 +14,8 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public async Task<Product?> GetByIdAsync(Guid productId)
+    public async Task<Product?> GetByIdAsync(Guid productId,CancellationToken cancellationToken = default)
     {
-        return await _context.Products.FirstOrDefaultAsync(product => product.Id == productId);
+        return await _context.Products.FirstOrDefaultAsync(product => product.Id == productId, cancellationToken);
     }
 }
