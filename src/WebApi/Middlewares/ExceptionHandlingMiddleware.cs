@@ -17,8 +17,6 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
         }
         catch (Exception e)
         {
-            _logger.LogInformation("Catch Exception");
-
             await HandleExceptionAsync(context, e);
         }
     }
@@ -38,7 +36,6 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
         httpContext.Response.ContentType = "application/json";
 
         httpContext.Response.StatusCode = statusCode;
-
         await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 
@@ -54,6 +51,7 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
     private static string GetTitle(Exception exception) =>
         exception switch
         {
+            InsufficientStockAvailableException => "InsufficientStockAvailableError",
             NotFoundException => "NotFoundError",
             ValidationException => "ValidationError",
             _ => "InternalServerError"

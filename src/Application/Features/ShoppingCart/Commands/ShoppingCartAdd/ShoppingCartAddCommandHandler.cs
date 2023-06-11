@@ -39,20 +39,12 @@ public class ShoppingCartAddCommandHandler : IRequestHandler<ShoppingCartAddComm
     {
         var shoppingCartAddRequest = request.ShoppingCartAddRequest;
 
-        if (!await _userRepository.IsUserExistAsync(shoppingCartAddRequest.UserId))
-        {
-            throw new NotFoundException(nameof(User), request.ShoppingCartAddRequest.UserId);
-        }
+        var product = (
+            await _productRepository.GetByIdAsync(
+                request.ShoppingCartAddRequest.ShoppingCardAddProduct.ProductId,
+                cancellationToken)
+        )!;
 
-        var product =
-            await _productRepository.GetByIdAsync(request.ShoppingCartAddRequest.ShoppingCardAddProduct.ProductId,
-                cancellationToken);
-
-        if (product is null)
-        {
-            throw new NotFoundException(nameof(Product),
-                request.ShoppingCartAddRequest.ShoppingCardAddProduct.ProductId);
-        }
 
         if (product.StockQuantity < request.ShoppingCartAddRequest.ShoppingCardAddProduct.Quantity)
         {

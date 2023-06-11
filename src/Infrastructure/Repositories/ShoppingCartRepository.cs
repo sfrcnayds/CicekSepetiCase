@@ -46,14 +46,12 @@ public class ShoppingCartRepository : IShoppingCartRepository
                         Sku = item.Product.Sku,
                         StockQuantity = item.Product.StockQuantity,
                         CreatedAt = item.Product.CreatedAt,
-                        ModifiedAt = item.Product.ModifiedAt,
-                        DeletedAt = item.Product.DeletedAt
+                        ModifiedAt = item.Product.ModifiedAt
                     },
                     ShoppingCartId = item.ShoppingCartId,
                     Quantity = item.Quantity,
                     CreatedAt = item.CreatedAt,
-                    ModifiedAt = item.ModifiedAt,
-                    DeletedAt = item.DeletedAt
+                    ModifiedAt = item.ModifiedAt
                 }).ToList()
             })
             .AsNoTracking()
