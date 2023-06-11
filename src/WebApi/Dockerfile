@@ -3,14 +3,20 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["WebApi/WebApi.csproj", "WebApi/"]
-COPY ["Application/Application.csproj", "Application/"]
-COPY ["Domain/Domain.csproj", "Domain/"]
-COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
-RUN dotnet restore "WebApi/WebApi.csproj"
+COPY ["src/WebApi/WebApi.csproj", "src/WebApi/"]
+COPY ["src/Application/Application.csproj", "src/Application/"]
+COPY ["src/Domain/Domain.csproj", "src/Domain/"]
+COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
+COPY ["tests/Application.UnitTests/Application.UnitTests.csproj", "tests/Application.UnitTests/"]
+RUN dotnet restore "src/WebApi/WebApi.csproj"
+RUN dotnet restore "tests/Application.UnitTests/Application.UnitTests.csproj"
 COPY . .
-WORKDIR "/src/WebApi"
+WORKDIR "/src/src/WebApi"
 RUN dotnet build "WebApi.csproj" -c Release -o /app/build
+
+FROM build AS test
+WORKDIR /src
+RUN dotnet test
 
 FROM build AS publish
 RUN dotnet publish "WebApi.csproj" -c Release -o /app/publish

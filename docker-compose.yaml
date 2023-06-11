@@ -2,8 +2,8 @@ version: '3.4'
 services:
   app:
     build:
-      context: src
-      dockerfile: WebApi/Dockerfile
+      context: .
+      dockerfile: src/WebApi/Dockerfile
     ports:
       - "8080:80"
     environment:

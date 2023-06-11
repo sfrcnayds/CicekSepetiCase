@@ -2,6 +2,13 @@
 
 Bu dokümantasyon, sepete ürün ekleme API'si hakkında bilgiler içermektedir.
 
+## Projenin Çalıştırılması
+    docker-compose up
+komutu ile proje ayağa kalkmaktadır.
+
+## API Erişimi
+Proje docker'da çalıştıktan sonra link üzerinden swagger'a erişilebilir
+- http://localhost:8080/swagger/index
 ## API Endpointi:
 
   - POST /ShoppingCart/AddProduct
