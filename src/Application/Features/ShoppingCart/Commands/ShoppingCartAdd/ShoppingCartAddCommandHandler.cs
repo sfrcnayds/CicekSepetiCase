@@ -45,14 +45,16 @@ public class ShoppingCartAddCommandHandler : IRequestHandler<ShoppingCartAddComm
         }
 
         var product =
-            await _productRepository.GetByIdAsync(request.ShoppingCartAddRequest.Product.ProductId, cancellationToken);
+            await _productRepository.GetByIdAsync(request.ShoppingCartAddRequest.ShoppingCardAddProduct.ProductId,
+                cancellationToken);
 
         if (product is null)
         {
-            throw new NotFoundException(nameof(Product), request.ShoppingCartAddRequest.Product.ProductId);
+            throw new NotFoundException(nameof(Product),
+                request.ShoppingCartAddRequest.ShoppingCardAddProduct.ProductId);
         }
 
-        if (product.StockQuantity < request.ShoppingCartAddRequest.Product.Quantity)
+        if (product.StockQuantity < request.ShoppingCartAddRequest.ShoppingCardAddProduct.Quantity)
         {
             throw new InsufficientStockAvailableException();
         }
@@ -64,7 +66,7 @@ public class ShoppingCartAddCommandHandler : IRequestHandler<ShoppingCartAddComm
                              await AddShoppingCartToUser(shoppingCartAddRequest.UserId, cancellationToken);
 
         var userShoppingCartExistItem = userShoppingCart?.ShoppingCartItems
-            .FirstOrDefault(item => item.ProductId == shoppingCartAddRequest.Product.ProductId);
+            .FirstOrDefault(item => item.ProductId == shoppingCartAddRequest.ShoppingCardAddProduct.ProductId);
 
         if (userShoppingCartExistItem is not null)
         {
@@ -96,7 +98,7 @@ public class ShoppingCartAddCommandHandler : IRequestHandler<ShoppingCartAddComm
     private void AddExistingShoppingCartItemToCart(ShoppingCartAddRequest shoppingCartAddRequest,
         ShoppingCartItem userShoppingCartExistItem, Product product)
     {
-        var quantity = shoppingCartAddRequest.Product.Quantity;
+        var quantity = shoppingCartAddRequest.ShoppingCardAddProduct.Quantity;
         if (userShoppingCartExistItem.Quantity + quantity > product.StockQuantity)
         {
             throw new InsufficientStockAvailableException();
@@ -109,8 +111,9 @@ public class ShoppingCartAddCommandHandler : IRequestHandler<ShoppingCartAddComm
     private async Task AddShoppingCartItemToCart(Guid shoppingCartId, ShoppingCartAddRequest shoppingCartAddRequest,
         CancellationToken cancellationToken = default)
     {
-        var newShoppingCartItem = new ShoppingCartItem(shoppingCartId, shoppingCartAddRequest.Product.ProductId,
-            shoppingCartAddRequest.Product.Quantity);
+        var newShoppingCartItem = new ShoppingCartItem(shoppingCartId,
+            shoppingCartAddRequest.ShoppingCardAddProduct.ProductId,
+            shoppingCartAddRequest.ShoppingCardAddProduct.Quantity);
 
         await _shoppingCartItemRepository.AddAsync(newShoppingCartItem, cancellationToken);
     }

@@ -45,7 +45,7 @@ public class ShoppingCartAddCommandHandlerTests
         );
 
         var command =
-            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ProductDto(Guid.NewGuid(), 1)));
+            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ShoppingCardAddProductDto(Guid.NewGuid(), 1)));
 
         // Act && Assert
         await Assert.ThrowsAsync<NotFoundException>(async () => { await handler.Handle(command, default); });
@@ -69,7 +69,7 @@ public class ShoppingCartAddCommandHandlerTests
         );
 
         var command =
-            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ProductDto(Guid.NewGuid(), 1)));
+            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ShoppingCardAddProductDto(Guid.NewGuid(), 1)));
 
         // Act & Assert
         await Assert.ThrowsAsync<NotFoundException>(async () =>
@@ -98,7 +98,7 @@ public class ShoppingCartAddCommandHandlerTests
         );
 
         var command =
-            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ProductDto(productGuid, 10)));
+            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ShoppingCardAddProductDto(productGuid, 10)));
 
         // Act & Assert
         await Assert.ThrowsAsync<InsufficientStockAvailableException>(async () =>
@@ -138,7 +138,7 @@ public class ShoppingCartAddCommandHandlerTests
         );
 
         var command =
-            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ProductDto(productGuid, 4)));
+            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ShoppingCardAddProductDto(productGuid, 4)));
 
         // Act & Assert
         await Assert.ThrowsAsync<InsufficientStockAvailableException>(async () =>
@@ -173,7 +173,7 @@ public class ShoppingCartAddCommandHandlerTests
             _unitOfWorkMock.Object
         );
 
-        var command = new ShoppingCartAddCommand(new ShoppingCartAddRequest(userId, new ProductDto(productId, 2)));
+        var command = new ShoppingCartAddCommand(new ShoppingCartAddRequest(userId, new ShoppingCardAddProductDto(productId, 2)));
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -218,7 +218,7 @@ public class ShoppingCartAddCommandHandlerTests
             _unitOfWorkMock.Object
         );
 
-        var command = new ShoppingCartAddCommand(new ShoppingCartAddRequest(userId, new ProductDto(productGuid, 2)));
+        var command = new ShoppingCartAddCommand(new ShoppingCartAddRequest(userId, new ShoppingCardAddProductDto(productGuid, 2)));
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -269,7 +269,7 @@ public class ShoppingCartAddCommandHandlerTests
         );
 
         var command =
-            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ProductDto(productGuid, 4)));
+            new ShoppingCartAddCommand(new ShoppingCartAddRequest(Guid.NewGuid(), new ShoppingCardAddProductDto(productGuid, 4)));
 
 
         // Act
@@ -278,7 +278,7 @@ public class ShoppingCartAddCommandHandlerTests
         // Assert
         _shoppingCartRepositoryMock.Verify(
             repo => repo.GetShoppingCartByUserIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()),
-            Times.Once);
+            Times.Never);
         _shoppingCartRepositoryMock.Verify(
             repo => repo.AddAsync(It.IsAny<Domain.Entities.ShoppingCart>(), It.IsAny<CancellationToken>()),
             Times.Never);

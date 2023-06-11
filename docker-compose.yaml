@@ -28,8 +28,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: ciceksepeti
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - back-end
 networks:
   back-end:
+volumes:
+  postgres_data:
